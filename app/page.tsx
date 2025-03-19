@@ -14,6 +14,7 @@ import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+import MainLayout from "@/components/layouts/MainLayout"
 
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -49,8 +50,7 @@ export default function Home() {
   };
 
   return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-          <Navbar />
+        <MainLayout>
 
           {/* Hero Section */}
           <header className="min-h-screen grid place-items-center pt-32 pb-20 bg-gradient-to-b from-primary/5 to-transparent dark:from-primary/10">
@@ -269,9 +269,7 @@ export default function Home() {
                   </motion.section>
               </div>
           </main>
-
-          <Footer />
-      </div>
+        </MainLayout>
   );
 }
 
