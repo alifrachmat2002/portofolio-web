@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 
-export default function Navbar() {
+export default function Navbar({ variant = "default" } : {variant : "default" | "alternative"}) {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [scrolled, setScrolled] = useState<boolean>(false);
@@ -43,14 +43,14 @@ export default function Navbar() {
                 <div
                     className={cn(
                         "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-16 transition-all ",
-                        scrolled ? "justify-between" : "justify-center"
+                        variant === "default" ? (scrolled ? "justify-between" : "justify-center") : "justify-between"
                     )}
                 >
                     <a
                         href="#"
                         className={cn(
                             "text-xl font-bold text-primary transition-all",
-                            scrolled ? "visible" : "hidden"
+                            variant === "default" ? (scrolled ? "visible" : "hidden") : "visible"
                         )}
                     >
                         Alif Rachmat Illahi

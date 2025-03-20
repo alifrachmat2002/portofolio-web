@@ -15,6 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import MainLayout from "@/components/layouts/MainLayout"
+import { Project, PROJECTS } from "@/data/projects"
 
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -25,6 +26,8 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 export default function Home() {
+
+  const [projects, setProject] = useState<Record<string, Project>>(PROJECTS);
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -50,8 +53,7 @@ export default function Home() {
   };
 
   return (
-        <MainLayout>
-
+      <MainLayout>
           {/* Hero Section */}
           <header className="min-h-screen grid place-items-center pt-32 pb-20 bg-gradient-to-b from-primary/5 to-transparent dark:from-primary/10">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -146,21 +148,18 @@ export default function Home() {
                           Projects
                       </h2>
                       <div className="grid md:grid-cols-2 gap-8">
-                          <ProjectCard
-                              title="Anjab ABK"
-                              description="A website for Universitas Diponegoro to conduct Analisis Jabatan and Analisis Beban Kerja."
-                              imageUrl="/placeholder.svg?height=300&width=500"
-                          />
-                          <ProjectCard
-                              title="E-Office"
-                              description="A prototype for automatic task recording for Universitas Diponegoro."
-                              imageUrl="/placeholder.svg?height=300&width=500"
-                          />
-                          <ProjectCard
-                              title="MHSC (Mental Health Screening)"
-                              description="Web application for Psychology Faculty of Universitas Diponegoro to conduct mental health screenings."
-                              imageUrl="/placeholder.svg?height=300&width=500"
-                          />
+                          {projects &&
+                              Object.entries(projects).map(([key, project]) => {
+                                  return (
+                                      <ProjectCard
+                                          key={key}
+                                          title={project.title}
+                                          description={project.shortDescription}
+                                          imageUrl={project.images[0]}
+                                          href={`/projects/${key}`}
+                                      />
+                                  );
+                              })}
                       </div>
                   </motion.section>
 
@@ -269,11 +268,11 @@ export default function Home() {
                   </motion.section>
               </div>
           </main>
-        </MainLayout>
+      </MainLayout>
   );
 }
 
-function ProjectCard({ title, description, imageUrl }: { title: string; description: string; imageUrl: string }) {
+function ProjectCard({ title, description, imageUrl, href }: { title: string; description: string; imageUrl: string; href: string  }) {
   return (
       <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden border-2 hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
           <div className="relative h-48 overflow-hidden">
@@ -290,13 +289,15 @@ function ProjectCard({ title, description, imageUrl }: { title: string; descript
               </h3>
               <p className="text-gray-600 dark:text-gray-300">{description}</p>
               <div className="mt-4 flex justify-end">
-                  <Button
-                      variant="outline"
-                      size="sm"
-                      className="text-primary hover:bg-primary hover:text-white transition-colors"
-                  >
-                      View Project
-                  </Button>
+                  <a href={href}>
+                      <Button
+                          variant="outline"
+                          size="sm"
+                          className="text-primary hover:bg-primary hover:text-white transition-colors"
+                      >
+                          View Project
+                      </Button>
+                  </a>
               </div>
           </div>
       </div>
