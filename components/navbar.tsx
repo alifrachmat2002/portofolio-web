@@ -47,7 +47,7 @@ export default function Navbar({ variant = "default" } : {variant : "default" | 
                     )}
                 >
                     <a
-                        href="#"
+                        href="/"
                         className={cn(
                             "text-xl font-bold text-primary transition-all",
                             variant === "default" ? (scrolled ? "visible" : "hidden") : "visible"
@@ -61,25 +61,25 @@ export default function Navbar({ variant = "default" } : {variant : "default" | 
                         })}
                     >
                         <a
-                            href="#about"
+                            href="/#about"
                             className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                         >
                             About
                         </a>
                         <a
-                            href="#skills"
+                            href="/#skills"
                             className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                         >
                             Skills
                         </a>
                         <a
-                            href="#projects"
+                            href="/#projects"
                             className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                         >
                             Projects
                         </a>
                         <a
-                            href="#contact"
+                            href="/#contact"
                             className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
                         >
                             Contact
@@ -107,7 +107,7 @@ export default function Navbar({ variant = "default" } : {variant : "default" | 
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 <DropdownMenuItem>
-                                    <a href="#about">About</a>
+                                    <a href="/#about">About</a>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                     <a href="#skills">Skills</a>
