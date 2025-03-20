@@ -14,7 +14,7 @@ export const PROJECTS: Record<string, Project> = {
     "anjab-abk": {
         title: "Anjab ABK",
         shortDescription:
-            "A website for Universitas Diponegoro to conduct Analisis Jabatan and Analisis Beban Kerja.",
+            "A web application to conduct Analisis Jabatan and Analisis Beban Kerja in Universitas Diponegoro.",
         longDescription: `
         Anjab ABK is a comprehensive web application developed for Universitas Diponegoro to streamline and digitize their Analisis Jabatan (Job Analysis) and Analisis Beban Kerja (Workload Analysis) processes.
         
