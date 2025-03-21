@@ -241,27 +241,39 @@ export default function Home() {
                                   these platforms:
                               </p>
                               <div className="flex space-x-4">
-                                  <Button
-                                      variant="outline"
-                                      size="icon"
-                                      className="text-primary hover:text-primary-foreground hover:bg-primary transition-colors"
+                                  <a
+                                      href="https://github.com/alifrachmat2002"
+                                      target="_blank"
                                   >
-                                      <Github className="h-5 w-5" />
-                                  </Button>
-                                  <Button
-                                      variant="outline"
-                                      size="icon"
-                                      className="text-primary hover:text-primary-foreground hover:bg-primary transition-colors"
+                                      <Button
+                                          variant="outline"
+                                          size="icon"
+                                          className="text-primary hover:text-primary-foreground hover:bg-primary transition-colors"
+                                      >
+                                          <Github className="h-5 w-5" />
+                                      </Button>
+                                  </a>
+                                  <a
+                                      href="https://www.linkedin.com/in/alifrachmat/"
+                                      target="_blank"
                                   >
-                                      <Linkedin className="h-5 w-5" />
-                                  </Button>
-                                  <Button
-                                      variant="outline"
-                                      size="icon"
-                                      className="text-primary hover:text-primary-foreground hover:bg-primary transition-colors"
-                                  >
-                                      <Mail className="h-5 w-5" />
-                                  </Button>
+                                      <Button
+                                          variant="outline"
+                                          size="icon"
+                                          className="text-primary hover:text-primary-foreground hover:bg-primary transition-colors"
+                                      >
+                                          <Linkedin className="h-5 w-5" />
+                                      </Button>
+                                  </a>
+                                  <a href="mailto:gettoworkwithalif@gmail.com">
+                                      <Button
+                                          variant="outline"
+                                          size="icon"
+                                          className="text-primary hover:text-primary-foreground hover:bg-primary transition-colors"
+                                      >
+                                          <Mail className="h-5 w-5" />
+                                      </Button>
+                                  </a>
                               </div>
                           </div>
                       </div>
