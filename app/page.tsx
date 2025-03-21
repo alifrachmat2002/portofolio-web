@@ -8,22 +8,14 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useTheme } from "next-themes"
 import { motion } from "framer-motion"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import MainLayout from "@/components/layouts/MainLayout"
 import { Project, PROJECTS } from "@/data/projects"
+import ContactForm from "@/components/contactform"
 
-const formSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().min(1, "Email is required").email("Invalid email address"),
-  message: z.string().min(1, "Message is required").max(500, "Message must be less than 500 characters"),
-})
 
-type FormValues = z.infer<typeof formSchema>
 
 export default function Home() {
 
@@ -38,19 +30,7 @@ export default function Home() {
     },
   }
 
-  const form = useForm<FormValues>({
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-          name: "",
-          email: "",
-          message: "",
-      },
-  });
-
-  const onSumbit = (values: FormValues) => {
-      console.log("Form submitted:", values);
-      // Here you would typically send the form data to your backend
-  };
+  
 
   return (
       <MainLayout>
@@ -178,61 +158,7 @@ export default function Home() {
 
                       <div className="grid md:grid-cols-2 gap-8">
                           <div>
-                              <Form {...form}>
-                                  <form
-                                      action=""
-                                      onSubmit={form.handleSubmit(onSumbit)}
-                                  >
-                                      <FormField
-                                          name="name"
-                                          render={({ field, fieldState }) => (
-                                              <FormItem>
-                                                  <FormLabel>Name</FormLabel>
-                                                  <FormControl>
-                                                      <Input {...field} />
-                                                  </FormControl>
-                                                  <FormMessage />
-                                              </FormItem>
-                                          )}
-                                      />
-
-                                      <FormField
-                                          name="email"
-                                          render={({ field, fieldState }) => (
-                                              <FormItem>
-                                                  <FormLabel>Email</FormLabel>
-                                                  <FormControl>
-                                                      <Input
-                                                          type="email"
-                                                          {...field}
-                                                      />
-                                                  </FormControl>
-                                                  <FormMessage />
-                                              </FormItem>
-                                          )}
-                                      />
-
-                                      <FormField
-                                          name="message"
-                                          render={({ field, fieldState }) => (
-                                              <FormItem>
-                                                  <FormLabel>Message</FormLabel>
-                                                  <FormControl>
-                                                      <Textarea
-                                                          rows={4}
-                                                          {...field}
-                                                      />
-                                                  </FormControl>
-                                                  <FormMessage />
-                                              </FormItem>
-                                          )}
-                                      />
-
-                                      <Button type="submit" className="w-full">
-                                          Send Message
-                                      </Button>
-                                  </form>
-                              </Form>
+                              <ContactForm />
                           </div>
 
                           <div className="flex flex-col justify-center">
