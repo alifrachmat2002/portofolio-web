@@ -57,7 +57,7 @@ export default function Navbar({ variant = "default" } : {variant : "default" | 
                     </a>
                     <div
                         className={cn("flex items-center space-x-4", {
-                            "max-md:hidden": scrolled,
+                            "max-md:hidden": scrolled || variant === "alternative",
                         })}
                     >
                         <a
@@ -100,7 +100,7 @@ export default function Navbar({ variant = "default" } : {variant : "default" | 
                         </Button>
                     </div>
 
-                    <div className={scrolled ? "md:hidden" : "hidden"}>
+                    <div className={variant === "alternative" ? "md:hidden" : (scrolled ? "md:hidden" : "hidden")}>
                         <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <Menu />
