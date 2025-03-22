@@ -70,8 +70,8 @@ export default function Home() {
                           About Me
                       </h2>
                       <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
-                          I am a full-stack developer with expertise in Laravel.
-                          I have a passion for creating efficient and
+                          I am a full-stack developer with proficiency in
+                          Laravel. I have a passion for creating efficient and
                           user-friendly web applications. With a strong
                           foundation in both front-end and back-end
                           technologies, I strive to deliver high-quality
