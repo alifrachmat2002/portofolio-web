@@ -14,6 +14,7 @@ import Footer from "@/components/footer"
 import MainLayout from "@/components/layouts/MainLayout"
 import { Project, PROJECTS } from "@/data/projects"
 import ContactForm from "@/components/contactform"
+import { Skeleton } from "@/components/ui/skeleton"
 
 
 
@@ -223,12 +224,18 @@ function ProjectCard({ title, description, imageUrl, href }: { title: string; de
   return (
       <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden border-2 hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
           <div className="relative h-48 overflow-hidden">
-              <Image
-                  src={imageUrl || "/placeholder.svg"}
-                  alt={title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-              />
+              {imageUrl ? (
+                  <>
+                      <Image
+                          src={imageUrl || "/placeholder.svg"}
+                          alt={title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                  </>   
+              ) : (
+                  <Skeleton className="w-full h-full" />
+              )}
           </div>
           <div className="p-6">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
