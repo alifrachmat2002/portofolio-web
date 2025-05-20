@@ -120,4 +120,36 @@ export const PROJECTS: Record<string, Project> = {
         repoUrl: "https://github.com/alifrachmat2002/psi-test",
         year: "2024",
     },
+    ACARA: {
+        title: "ACARA - Event Booking Platform",
+        shortDescription:
+            "A full-stack event booking platform with admin and user functionalities including ticket management and payment integration.",
+        longDescription: `
+        This Event Booking Platform is a full-featured web application that allows users to browse, search, and filter events by categories, and securely purchase tickets online. Built as part of a guided tutorial to learn MERN stack development by WPU Course.
+
+        Administrators have the ability to manage events, including creating and updating event details, managing ticket availability, and handling the overall booking system. Users can register, edit their profiles, browse events, and buy tickets via an integrated payment gateway. Once a ticket is purchased, it appears in the user's personal ticket dashboard.
+
+        Key features include:
+        • Event listing with search and category filters
+        • Admin panel for event and ticket management
+        • Secure user authentication and profile management
+        • Ticket purchase flow with payment gateway integration
+        • User ticket dashboard
+        • Mobile-responsive interface built with Tailwind CSS
+        `,
+        images: [],
+        techStack: [
+            "Next.js",
+            "React",
+            "MongoDB",
+            "Express",
+            "Node.js",
+            "Mongoose",
+            "Tailwind CSS",
+            "HeroUI",
+        ],
+        liveUrl: "https://fe-acara-xi.vercel.app/", // you can add this once deployed
+        repoUrl: "https://github.com/alifrachmat2002/fe-acara", // add your GitHub repo link here
+        year: "Work in Progress",
+    },
 };

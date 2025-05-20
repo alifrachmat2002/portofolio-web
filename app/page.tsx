@@ -42,6 +42,15 @@ export default function Home() {
                       animate="visible"
                       variants={fadeInUp}
                   >
+                      {/* <div className="relative -translate-y-5 flex justify-center w-full mb-2 ">
+                          <Image
+                              className="rounded-full border-gray-500 shadow-lg  border-2"
+                              src="/images/me.jpeg"
+                              width={140}
+                              height={140}
+                              alt="It's Me!"
+                          />
+                      </div> */}
                       <p className="text-xl mb-2 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                           Hey There, I'm
                       </p>

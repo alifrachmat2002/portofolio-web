@@ -80,37 +80,40 @@ export default function AnjabABKPage() {
                 </motion.div>
 
                 {/* Image carousel */}
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={fadeIn}
-                    className="bg-white dark:bg-gray-800 rounded-xl border-2 p-4"
-                >
-                    <Carousel className="w-full">
-                        <CarouselContent>
-                            {project.images.map(
-                                (image: string, index: number) => (
-                                    <CarouselItem key={index}>
-                                        <div className="relative aspect-video overflow-hidden rounded-lg">
-                                            <Image
-                                                src={
-                                                    image || "/placeholder.svg"
-                                                }
-                                                alt={`${
-                                                    project.title
-                                                } screenshot ${index + 1}`}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                    </CarouselItem>
-                                )
-                            )}
-                        </CarouselContent>
-                        <CarouselPrevious className="left-2" />
-                        <CarouselNext className="right-2" />
-                    </Carousel>
-                </motion.div>
+                {project.images.length !== 0 && (
+                    <motion.div
+                        initial="hidden"
+                        animate="visible"
+                        variants={fadeIn}
+                        className="bg-white dark:bg-gray-800 rounded-xl border-2 p-4"
+                    >
+                        <Carousel className="w-full">
+                            <CarouselContent>
+                                {project.images.map(
+                                    (image: string, index: number) => (
+                                        <CarouselItem key={index}>
+                                            <div className="relative aspect-video overflow-hidden rounded-lg">
+                                                <Image
+                                                    src={
+                                                        image ||
+                                                        "/placeholder.svg"
+                                                    }
+                                                    alt={`${
+                                                        project.title
+                                                    } screenshot ${index + 1}`}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                        </CarouselItem>
+                                    )
+                                )}
+                            </CarouselContent>
+                            <CarouselPrevious className="left-2" />
+                            <CarouselNext className="right-2" />
+                        </Carousel>
+                    </motion.div>
+                )}
 
                 {/* Project details */}
                 <div className="grid md:grid-cols-3 gap-8">
