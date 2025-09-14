@@ -7,7 +7,7 @@ config({
 });
 
 export default defineConfig({
-    schema: './db/schema.ts',
+    schema: './db/schema/**/*.ts',
     out: './supabase/migrations',
     dialect: "postgresql",
     dbCredentials: {
