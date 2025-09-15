@@ -9,10 +9,13 @@ import { Eye, EyeClosed } from "lucide-react";
 import useRegister from "./useRegister";
 
 export default function RegisterPage() {
-    const { form, onSubmit, visible, handleChangeVisibility } = useRegister();
+    // const { form, onSubmit, visible, handleChangeVisibility } = useRegister();
     return (
         <div className="min-h-screen flex justify-center items-center">
-            <section className="bg-white dark:bg-gray-800 border-2 rounded-xl p-8 min-w-[500px]">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 pb-2">
+                gk mw
+            </h2>
+            {/* <section className="bg-white dark:bg-gray-800 border-2 rounded-xl p-8 min-w-[500px]">
                 <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">
                     How'd you get here, ma boi
                 </h2>
@@ -113,7 +116,7 @@ export default function RegisterPage() {
                         </Button>
                     </form>
                 </Form>
-            </section>
+            </section> */}
         </div>
     );
 }
