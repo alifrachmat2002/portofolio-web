@@ -22,7 +22,11 @@ const useLogin = () => {
     const handleChangeVisibility = () => setIsVisible((prev) => !prev);
 
     const form = useForm<LoginForm>({
-        resolver: zodResolver(loginSchema)
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            email: "",
+            password: ""
+        }
     });
 
     const onSubmit = async(values: LoginForm) => {
