@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { AppSidebar } from "../app-sidebar";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 import { Separator } from "../ui/separator";
@@ -31,7 +31,7 @@ export default function AdminLayout({ children, breadcrumbs }: Props) {
                                 <BreadcrumbLink href="/">Admin</BreadcrumbLink>
                             </BreadcrumbItem>
                             {breadcrumbs?.map((breadcrumb, index) => (
-                                <>
+                                <React.Fragment key={index}>
                                     <BreadcrumbSeparator className="hidden md:block" />
                                     <BreadcrumbItem>
                                         {index + 1 == breadcrumbs.length ? 
@@ -44,7 +44,7 @@ export default function AdminLayout({ children, breadcrumbs }: Props) {
                                             </BreadcrumbLink>
                                         }
                                     </BreadcrumbItem>
-                                </>
+                                </React.Fragment>
                             ))}
                         </BreadcrumbList>
                     </Breadcrumb>
