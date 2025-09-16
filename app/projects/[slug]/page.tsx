@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { PROJECTS } from "@/data/projects";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
