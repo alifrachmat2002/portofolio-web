@@ -1,8 +1,12 @@
-import React, { ReactNode } from "react";
+"use client"
+import React, { ReactNode, useState } from "react";
 import { AppSidebar } from "../app-sidebar";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 import { Separator } from "../ui/separator";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb";
+import { useTheme } from "next-themes";
+import { Button } from "../ui/button";
+import { Moon, Sun } from "lucide-react";
 
 interface Props {
     children : ReactNode;
@@ -15,6 +19,9 @@ export type Breadcrumb = {
 }
 
 export default function AdminLayout({ children, breadcrumbs }: Props) {
+    const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
     return (
         <SidebarProvider>
             <AppSidebar />
@@ -48,6 +55,21 @@ export default function AdminLayout({ children, breadcrumbs }: Props) {
                             ))}
                         </BreadcrumbList>
                     </Breadcrumb>
+                    <Button
+                            variant="ghost"
+                            size="icon"
+                            className="ml-auto"
+                            onClick={() =>
+                                setTheme(theme === "dark" ? "light" : "dark")
+                            }
+                            aria-label="Toggle theme"
+                        >
+                            {mounted && theme === "dark" ? (
+                                <Sun className="h-5 w-5" />
+                            ) : (
+                                <Moon className="h-5 w-5" />
+                            )}
+                        </Button>
                 </header>
                 <div className="p-6 ">{children}</div>
             </SidebarInset>
