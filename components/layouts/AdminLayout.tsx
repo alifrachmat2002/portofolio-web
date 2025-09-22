@@ -35,7 +35,7 @@ export default function AdminLayout({ children, breadcrumbs }: Props) {
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem className="hidden md:block">
-                                <BreadcrumbLink href="/">Admin</BreadcrumbLink>
+                                <BreadcrumbLink href="/admin">Admin</BreadcrumbLink>
                             </BreadcrumbItem>
                             {breadcrumbs?.map((breadcrumb, index) => (
                                 <React.Fragment key={index}>
