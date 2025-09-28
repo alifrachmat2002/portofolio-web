@@ -15,12 +15,21 @@ import MainLayout from "@/components/layouts/MainLayout"
 import { Project, PROJECTS } from "@/data/projects"
 import ContactForm from "@/components/contactform"
 import { Skeleton } from "@/components/ui/skeleton"
+import useHome from "@/components/views/Home/useHome"
+import { Spinner } from "@/components/ui/shadcn-io/spinner"
+import TechstackBadge from "@/components/techstack/techstack-badge"
 
 
 
 export default function Home() {
 
   const [projects, setProject] = useState<Record<string, Project>>(PROJECTS);
+  const {
+    techstackData,
+    isErrorTechstackData,
+    isLoadingTechstackData,
+    isRefetchingTechstackData
+  } = useHome();
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -102,26 +111,21 @@ export default function Home() {
                           Skills
                       </h2>
                       <div className="flex flex-wrap gap-3">
-                          {[
-                              "HTML",
-                              "CSS",
-                              "JavaScript",
-                              "TypeScript",
-                              "PHP",
-                              "MySQL",
-                              "Laravel",
-                              "React",
-                              "Git",
-                              "Next.js",
-                              "Express.js",
-                          ].map((skill) => (
-                              <span
-                                  key={skill}
-                                  className="bg-primary/10 text-primary dark:bg-primary/20 px-4 py-2 rounded-full text-sm font-semibold transition-all hover:bg-primary hover:text-white dark:hover:bg-primary hover:-translate-y-1"
-                              >
-                                  {skill}
-                              </span>
-                          ))}
+                          {isLoadingTechstackData ? (
+                              <div className="flex items-center justify-center w-full gap-3">
+                                  <Spinner variant="ring" />
+                                  <p>Loading</p>
+                              </div>
+                          ) : techstackData?.length === 0 ? (
+                            <div className="flex items-center justify-center w-full gap-3">
+                                  <p>Skill Issue {`:(`}</p>
+                              </div>
+                          ) : (
+                            techstackData?.map((techstack) => (
+                                <TechstackBadge techstack={techstack} key={techstack.id}/>
+                            ))
+                          )
+                          }
                       </div>
                   </motion.section>
 

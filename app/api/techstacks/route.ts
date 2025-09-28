@@ -6,12 +6,6 @@ import { headers } from "next/headers";
 
 export async function GET() {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers()
-    })
-
-    if (!session) return response.unauthorized();
-
     const data = await db
                     .select()
                     .from(techstacksTable);
