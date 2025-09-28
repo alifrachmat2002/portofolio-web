@@ -1,3 +1,3 @@
 export const endpoint = {
-    TECHSTACK: "/admin/techstacks"
+    TECHSTACK: "/api/techstacks"
 }

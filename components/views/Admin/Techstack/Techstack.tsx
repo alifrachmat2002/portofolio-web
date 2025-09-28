@@ -6,9 +6,10 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Techstack as TechstackType } from "@/db/schema/techstacks";
 import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
 import { DataTable } from "@/components/ui/data-table/data-table";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
-import { MoreHorizontal } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Edit, MoreHorizontal, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AddTechstackDialog from "@/components/ui/techstack/add-techstack-dialog";
 
 export default function Techstack() {
     const { 
@@ -25,9 +26,7 @@ export default function Techstack() {
         {
             id: "actions",
             header: () => <span>Actions</span>,
-            cell: ({ row }) => {
-                const payment = row.original
-            
+            cell: ({ row }) => {           
                 return (
                     <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -39,11 +38,13 @@ export default function Techstack() {
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem>
-                        Copy payment ID
+                            <Edit/>
+                            Edit
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Trash/>
+                            Delete
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                     </DropdownMenu>
         )
@@ -51,10 +52,13 @@ export default function Techstack() {
         }
     ],[])
 
-    return <div className="space-y-6">
-        <h1 className="lg:text-3xl font-bold">
-            Tech Stack
-        </h1>
-        <DataTable columns={columns} data={techstackData || []}/>
-    </div>
+    return (
+        <div className="space-y-6">
+            <div className="flex justify-between">
+                <h1 className="lg:text-3xl font-bold">Tech Stack</h1>
+                <AddTechstackDialog/>
+            </div>
+            <DataTable columns={columns} data={techstackData || []} />
+        </div>
+    );
 }

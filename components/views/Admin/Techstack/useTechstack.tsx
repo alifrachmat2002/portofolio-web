@@ -1,7 +1,9 @@
-import { Techstack } from "@/db/schema/techstacks";
+import { Techstack, TechstackForm, techstackSchema } from "@/db/schema/techstacks";
 import techstackService from "@/services/techstack.service";
-import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function useTechstack() {
 
