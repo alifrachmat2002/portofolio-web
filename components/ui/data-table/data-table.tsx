@@ -25,20 +25,24 @@ import { DataTablePagination } from "./pagination"
 import { useState } from "react"
 import { Input } from "@/components/input"
 import { DataTableViewOptions } from "./data-table-view-options"
+import { Spinner } from "../shadcn-io/spinner"
+import { Skeleton } from "../skeleton"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  isLoading: boolean
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  isLoading
 }: DataTableProps<TData, TValue>) {
 
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFiters] = useState<ColumnFiltersState>([]);
-  const [globalFilter, setGlobalFilter] = useState<any>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [globalFilter, setGlobalFilter] = useState<any>("");
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
   const table = useReactTable({
@@ -48,7 +52,7 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    onColumnFiltersChange: setColumnFiters,
+    onColumnFiltersChange: setColumnFilters,
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
     onColumnVisibilityChange: setColumnVisibility,
@@ -71,9 +75,10 @@ export function DataTable<TData, TValue>({
                       table.setGlobalFilter(event.target.value)
                   }
                   className="max-w-sm"
+                  disabled={isLoading}
               />
 
-              <DataTableViewOptions table={table}/>
+              <DataTableViewOptions table={table} />
           </div>
           <div className="overflow-hidden rounded-md border">
               <Table>
@@ -97,7 +102,24 @@ export function DataTable<TData, TValue>({
                       ))}
                   </TableHeader>
                   <TableBody>
-                      {table.getRowModel().rows?.length ? (
+                      {isLoading ? [0,1,2].map((item) => (
+                          <TableRow key={item}>
+                              {table.getVisibleLeafColumns().map((col) => (
+                                <TableCell key={col.id} className="h-[3rem]">
+                                    <Skeleton className="h-[1.5rem] w-1/2"/>
+                                </TableCell>
+                              ))}
+                          </TableRow>
+                      )) : table.getRowModel().rows?.length === 0 ? (
+                          <TableRow>
+                              <TableCell
+                                  colSpan={table.getVisibleLeafColumns().length}
+                                  className="h-24 text-center"
+                              >
+                                  No results.
+                              </TableCell>
+                          </TableRow>
+                      ) : (
                           table.getRowModel().rows.map((row) => (
                               <TableRow
                                   key={row.id}
@@ -113,15 +135,6 @@ export function DataTable<TData, TValue>({
                                   ))}
                               </TableRow>
                           ))
-                      ) : (
-                          <TableRow>
-                              <TableCell
-                                  colSpan={columns.length}
-                                  className="h-24 text-center"
-                              >
-                                  No results.
-                              </TableCell>
-                          </TableRow>
                       )}
                   </TableBody>
               </Table>

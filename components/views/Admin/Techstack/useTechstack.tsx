@@ -23,10 +23,13 @@ export default function useTechstack() {
         queryFn: getTechstack
     });
 
+    const isPending = isLoading || isRefetching;
+
     return {
         techstackData,
         isLoading,
         isRefetching,
-        isError
+        isError,
+        isPending
     }
 }

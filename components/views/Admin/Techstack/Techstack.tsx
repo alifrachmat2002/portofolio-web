@@ -20,7 +20,7 @@ import AddTechstackDialog from "@/components/techstack/add-techstack-dialog/add-
 import DeleteTechstackDialog from "@/components/techstack/delete-techstack-dialog/delete-techstack-dialog";
 
 export default function Techstack() {
-    const { techstackData, isLoading, isError } = useTechstack();
+    const { techstackData, isPending, isError } = useTechstack();
     const [toBeDeletedTechstackId,setToBeDeletedTechstackId ] =useState<number | null>(null);
 
     const columns = useMemo<ColumnDef<TechstackType>[]>(
@@ -69,7 +69,7 @@ export default function Techstack() {
                 <h1 className="lg:text-3xl font-bold">Tech Stack</h1>
                 <AddTechstackDialog />
             </div>
-            <DataTable columns={columns} data={techstackData || []} />
+            <DataTable columns={columns} data={techstackData || []} isLoading={isPending}/>
             <DeleteTechstackDialog toBedeletedTechstackId={toBeDeletedTechstackId} setToBedeletedTechstackId={setToBeDeletedTechstackId}/>
         </div>
     );
