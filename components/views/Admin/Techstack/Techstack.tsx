@@ -47,8 +47,8 @@ export default function Techstack() {
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                     </DropdownMenu>
-        )
-        },
+            )
+            },
         }
     ],[])
 
