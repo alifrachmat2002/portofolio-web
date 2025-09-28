@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -21,18 +21,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useAddTechstack from "./use-add-techstack";
-import { Spinner } from "../shadcn-io/spinner";
+import { Spinner } from "../../ui/shadcn-io/spinner";
 import { cn } from "@/lib/utils";
 
 const AddTechstackDialog = () => {
-    const {
-        form,
-        handleAddTechstack,
-        isOpen,
-        onOpenChange,
-        setIsOpen
-    } = useAddTechstack();
-
+    const { form, handleAddTechstack, isOpen, onOpenChange, setIsOpen } =
+        useAddTechstack();
 
     return (
         <Dialog onOpenChange={onOpenChange} open={isOpen}>
@@ -88,6 +82,6 @@ const AddTechstackDialog = () => {
             </DialogContent>
         </Dialog>
     );
-}
+};
 
 export default AddTechstackDialog;
