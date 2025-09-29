@@ -82,6 +82,11 @@ export default {
             status,
             message,
             data: [],
-        });
+        },
+        {
+            status,
+            statusText: message
+        }
+    );
     },
 };

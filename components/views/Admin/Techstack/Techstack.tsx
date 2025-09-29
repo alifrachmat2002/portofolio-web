@@ -18,10 +18,12 @@ import { Edit, MoreHorizontal, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AddTechstackDialog from "@/components/techstack/add-techstack-dialog/add-techstack-dialog";
 import DeleteTechstackDialog from "@/components/techstack/delete-techstack-dialog/delete-techstack-dialog";
+import EditTechstackDialog from "@/components/techstack/edit-techstack-dialog/edit-techstack-dialog";
 
 export default function Techstack() {
     const { techstackData, isPending, isError } = useTechstack();
     const [toBeDeletedTechstackId,setToBeDeletedTechstackId ] =useState<number | null>(null);
+    const [toBeEditedTechstack,setToBeEditedTechstack ] =useState<TechstackType | null>(null);
 
     const columns = useMemo<ColumnDef<TechstackType>[]>(
         () => [
@@ -35,7 +37,7 @@ export default function Techstack() {
                 id: "actions",
                 header: () => <span>Actions</span>,
                 cell: ({ row }) => {
-                    const id = row.original.id;
+                    const original = row.original;
                     return (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -46,11 +48,19 @@ export default function Techstack() {
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                <DropdownMenuItem>
+                                <DropdownMenuItem
+                                    onClick={() =>
+                                        setToBeEditedTechstack(original)
+                                    }
+                                >
                                     <Edit />
                                     Edit
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => setToBeDeletedTechstackId(id)}>
+                                <DropdownMenuItem
+                                    onClick={() =>
+                                        setToBeDeletedTechstackId(original.id)
+                                    }
+                                >
                                     <Trash />
                                     Delete
                                 </DropdownMenuItem>
@@ -71,6 +81,7 @@ export default function Techstack() {
             </div>
             <DataTable columns={columns} data={techstackData || []} isLoading={isPending}/>
             <DeleteTechstackDialog toBedeletedTechstackId={toBeDeletedTechstackId} setToBedeletedTechstackId={setToBeDeletedTechstackId}/>
+            <EditTechstackDialog toBeEditedTechstack={toBeEditedTechstack} setToBeEditedTechstack={setToBeEditedTechstack}/>
         </div>
     );
 }

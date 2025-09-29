@@ -8,7 +8,8 @@ export async function GET() {
   try {
     const data = await db
                     .select()
-                    .from(techstacksTable);
+                    .from(techstacksTable)
+                    .orderBy(techstacksTable.id);
 
     return response.success(data,"Techstack Retrieved Successfully")
   } catch (error) {
